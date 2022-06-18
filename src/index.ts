@@ -11,6 +11,8 @@ import { createTestData } from './data';
 
 const app = express();
 
+const PORT = process.env.PORT || 5000;
+
 // middleware
 app.use(cors());
 app.use(json());
@@ -34,12 +36,12 @@ socketServer(server);
 associate();
 
 // create table using model by sync command
-db.sync({ force: true })
+db.sync({ force: false })
   .then(() => {
     createTestData();
 
-    server.listen(5000, () => {
-      console.log('Listening on port 5000');
+    server.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`);
     });
   })
   .catch((err: any) => {

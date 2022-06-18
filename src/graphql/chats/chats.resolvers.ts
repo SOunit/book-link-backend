@@ -138,7 +138,6 @@ export = {
 
         await UserChat.create(
           {
-            id: uuidV4(),
             ChatId: chatId,
             UserId: args.userId,
           },
@@ -147,7 +146,6 @@ export = {
 
         await UserChat.create(
           {
-            id: uuidV4(),
             ChatId: chatId,
             UserId: args.targetId,
           },
