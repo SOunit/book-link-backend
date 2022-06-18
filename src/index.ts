@@ -38,7 +38,7 @@ associate();
 // create table using model by sync command
 db.sync({ force: false })
   .then(() => {
-    createTestData();
+    // createTestData();
 
     server.listen(PORT, () => {
       console.log(`Listening on port ${PORT}`);
