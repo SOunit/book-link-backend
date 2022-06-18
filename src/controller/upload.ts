@@ -5,10 +5,10 @@ import { keys } from '../util';
 
 const s3 = new AWS.S3({
   credentials: {
-    accessKeyId: keys.accessKeyId!,
-    secretAccessKey: keys.secretAccessKey!,
+    accessKeyId: keys.AWS_ACCESS_KEY_ID!,
+    secretAccessKey: keys.AWS_ACCESS_KEY_ID!,
   },
-  region: keys.region,
+  region: keys.AWS_REGION,
 });
 
 export const upload = (_req: Request, res: Response) => {

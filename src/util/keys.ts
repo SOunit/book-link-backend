@@ -1,10 +1,6 @@
 export const keys = {
-  pgUser: process.env.PGUSER,
-  pgHost: process.env.PGHOST,
-  pgDatabase: process.env.PGDATABASE,
-  pgPassword: process.env.PGPASSWORD,
-  pgPort: process.env.PGPORT,
-  accessKeyId: process.env.ACCESSKEYID,
-  secretAccessKey: process.env.SECRETACCESSKEY,
-  region: process.env.REGION,
+  DATABASE_URL: process.env.DATABASE_URL,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  AWS_REGION: process.env.AWS_REGION,
 };
