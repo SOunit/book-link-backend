@@ -1,7 +1,7 @@
 type CreateItemInput = {
   title: string;
   author: string;
-  imageUrl: string | null;
+  imageUrl?: string;
   // createdAt: Date;
 };
 

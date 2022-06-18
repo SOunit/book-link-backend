@@ -6,6 +6,7 @@ interface MessageAttributes {
   ChatId: string;
   UserId: string;
   text: string;
+  createdAt?: string;
 }
 
 export class Message extends Model<MessageAttributes> {}

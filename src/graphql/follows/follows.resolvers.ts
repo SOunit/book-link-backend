@@ -10,7 +10,7 @@ export = {
     ) => {
       const following = await Follow.findOne({
         where: {
-          userId: args.userId,
+          UserId: args.userId,
           followingUserId: args.followingUserId,
         },
       });

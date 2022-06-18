@@ -1,11 +1,11 @@
 import { Model, DataTypes } from 'sequelize';
 import { db } from '../../config/database.config';
 
-interface ItemAttributes {
+export interface ItemAttributes {
   id: string;
   title: string;
   author: string;
-  imageUrl: string;
+  imageUrl?: string;
 }
 
 export class Item extends Model<ItemAttributes> {}

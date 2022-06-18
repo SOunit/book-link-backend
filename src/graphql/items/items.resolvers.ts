@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from 'uuid';
 import { Op } from 'sequelize';
-import { Item, User, UserItem } from '../../models/sequelize';
+import { Item, ItemAttributes, User, UserItem } from '../../models/sequelize';
 import CreateItemInput from '../../models/ts/CreateItemInput';
 
 export = {
@@ -57,7 +57,8 @@ export = {
     createItem: async (_: any, args: { data: CreateItemInput }) => {
       const id = uuidV4();
       const { title, author, imageUrl } = args.data;
-      const newItem = { id, title, author, imageUrl };
+
+      const newItem: ItemAttributes = { id, title, author, imageUrl };
 
       await Item.create(newItem);
 
@@ -71,7 +72,7 @@ export = {
       },
     ) => {
       const userItemInstance = await UserItem.findOne({
-        where: { userId: args.data.userId, itemId: args.data.itemId },
+        where: { UserId: args.data.userId, ItemId: args.data.itemId },
       });
       if (userItemInstance) {
         await userItemInstance.destroy();
