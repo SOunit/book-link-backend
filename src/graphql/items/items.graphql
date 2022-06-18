@@ -1,0 +1,28 @@
+type Query {
+  item(id: ID!): Item!
+  itemsByTitle(title: String): [Item!]!
+  fetchRandomItems: [Item!]!
+}
+
+type Mutation {
+  createItem(data: CreateItemInput!): Item!
+  deleteUserItem(data: DeleteUserItemInput!): User!
+  addUserItem(data: AddUserItemInput!): User!
+}
+
+input AddUserItemInput {
+  UserId: ID!
+  ItemId: ID!
+}
+
+input DeleteUserItemInput {
+  UserId: ID!
+  ItemId: ID!
+}
+
+type Item {
+  id: ID!
+  title: String!
+  author: String!
+  imageUrl: String
+}
