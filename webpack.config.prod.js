@@ -1,6 +1,7 @@
 const path = require('path');
 const CleanPlugin = require('clean-webpack-plugin');
 const { IgnorePlugin } = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'production',
@@ -29,4 +30,5 @@ module.exports = {
       resourceRegExp: /^pg-native$/,
     }),
   ],
+  externals: [nodeExternals()],
 };
