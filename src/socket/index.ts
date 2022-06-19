@@ -1,5 +1,7 @@
 import MessageType from '../models/ts/Message';
 import { Server } from 'socket.io';
+import http from 'http';
+import express from 'express';
 
 // to save sockets for login user
 const loginUserIdToUserIdWithSockets = new Map();
@@ -7,8 +9,10 @@ const loginUserIdToUserIdWithSockets = new Map();
 // when user logout, api get socket only
 const socketIdToLoginUserId = new Map();
 
-export const socketServer = (server: any) => {
-  const io = new Server(server);
+export const socketServer = (app: express.Application) => {
+  const httpServer = http.createServer(app);
+  const WEB_SOCKET_CORS = { origin: '*' };
+  const io = new Server(httpServer, { cors: WEB_SOCKET_CORS });
 
   const emitUpdateChat = (userId: string, message: MessageType) => {
     console.log('emitUpdateChat');
@@ -27,7 +31,9 @@ export const socketServer = (server: any) => {
     }
   };
 
-  io.on('connection', (socket: any) => {
+  io.on('connection', (socket) => {
+    console.log('on-connection socket.id', socket.id);
+
     socket.on('join', (loginUserId: string) => {
       console.log('loginUserId', loginUserId);
       if (!loginUserId) {
@@ -118,6 +124,8 @@ export const socketServer = (server: any) => {
         userId: string;
         message: MessageType;
       }) => {
+        console.log('create:message');
+
         // update login user chat screen
         emitUpdateChat(loginUserId, message);
 
@@ -126,4 +134,6 @@ export const socketServer = (server: any) => {
       },
     );
   });
+
+  return httpServer;
 };

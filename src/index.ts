@@ -3,7 +3,6 @@ import express from 'express';
 import { json } from 'body-parser';
 import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
-import http from 'http';
 import { socketServer } from './socket';
 import { router } from './routes/upload';
 import { db, getSchema, associate } from './config';
@@ -29,8 +28,7 @@ app.use(
 );
 
 // socket
-const server = http.createServer(app);
-socketServer(server);
+const server = socketServer(app);
 
 // sequelize
 associate();

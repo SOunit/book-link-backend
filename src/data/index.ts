@@ -4,11 +4,12 @@ import { createItems } from './create-items';
 import { createUsers } from './create-users';
 
 export const createTestData = async () => {
-  await createUsers();
-
-  await createItems();
-
-  await createChat();
-
-  await createFollows();
+  try {
+    await createUsers();
+    await createItems();
+    await createChat();
+    await createFollows();
+  } catch (error) {
+    console.log(error);
+  }
 };
